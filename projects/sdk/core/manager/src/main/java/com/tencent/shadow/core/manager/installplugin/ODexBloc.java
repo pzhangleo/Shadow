@@ -50,7 +50,7 @@ public class ODexBloc {
             //创建oDex目录
             oDexDir.mkdirs();
 
-            new DexClassLoader(apkFile.getAbsolutePath(), oDexDir.getAbsolutePath(), null, ODexBloc.class.getClassLoader());
+            new DexClassLoader(apkFile.getAbsolutePath(), oDexDir.getAbsolutePath(), null, ODexBloc.class.getClassLoader());// LEARN: 2019-10-22 17:06 new 即可触发odex
 
             try {
                 copiedTagFile.createNewFile();

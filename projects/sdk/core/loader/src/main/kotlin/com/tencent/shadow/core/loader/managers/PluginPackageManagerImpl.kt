@@ -22,6 +22,11 @@ import android.content.ComponentName
 import android.content.pm.*
 import com.tencent.shadow.core.runtime.PluginPackageManager
 
+// LEARN: 2019-10-22 15:32 凡是PackageName等于宿主的，我们假设这个代码想要的就是插件的信息。
+// 对于插件真的想要查询宿主的信息的场景，只能让插件代码拿到宿主的Context后直接拿宿主的PackageManager获取。
+// 在Shadow中，插件的Context的baseContext都是宿主的Context，所以可以通过baseContext获得到宿主的Context。
+// 明出处。
+// LEARN: 2019-10-22 15:34 其实这个PackageManager是无法通过系统api获取到的，只是一个代理类
 internal class PluginPackageManagerImpl(private val hostPackageManager: PackageManager,
                                         private val packageInfo: PackageInfo,
                                         private val allPluginPackageInfo: () -> (Array<PackageInfo>))

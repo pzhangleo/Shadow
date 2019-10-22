@@ -128,7 +128,7 @@ object LoadPluginBloc {
 
             val buildRunningPlugin = executorService.submit {
                 if (File(installedApk.apkFilePath).exists().not()) {
-                    throw LoadPluginException("插件文件不存在.pluginFile==" + installedApk.apkFilePath)
+                    throw LoadPluginException("插件文件不存在.pluginFile==" + installedApk.apkFilePath)// LEARN: 这个判断为何不在最前面做？
                 }
                 val pluginPackageManager = buildPackageManager.get()
                 val pluginClassLoader = buildClassLoader.get()

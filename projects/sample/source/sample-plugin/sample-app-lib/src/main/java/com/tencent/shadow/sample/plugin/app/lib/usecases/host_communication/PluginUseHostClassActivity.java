@@ -27,7 +27,7 @@ import com.tencent.shadow.sample.host.lib.HostUiLayerProvider;
 import com.tencent.shadow.sample.plugin.app.lib.gallery.BaseActivity;
 import com.tencent.shadow.sample.plugin.app.lib.gallery.cases.entity.UseCase;
 
-public class PluginUseHostClassActivity extends BaseActivity {
+public class PluginUseHostClassActivity extends BaseActivity {// LEARN: 2019-10-22 17:40 宿主类配置在插件CONFIG.JSON的白名单中
     public static class Case extends UseCase {
         @Override
         public String getName() {

@@ -25,7 +25,7 @@ import com.tencent.shadow.core.common.Logger;
 import com.tencent.shadow.core.common.LoggerFactory;
 
 import java.io.File;
-
+// LEARN: 2019-10-21 18:05 这个就是动态加载的PluginManager的管理类，负责更新
 public final class DynamicPluginManager implements PluginManager {
 
     final private PluginManagerUpdater mUpdater;

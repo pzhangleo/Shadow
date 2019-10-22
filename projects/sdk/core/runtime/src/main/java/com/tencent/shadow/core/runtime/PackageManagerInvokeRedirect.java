@@ -33,7 +33,7 @@ import android.os.Build;
  * 而不能把这个类实现的方法直接写在Transform生成的方法体中，是为了避免这个类实现的代码再次被Transform，
  * 形成循环调用。
  */
-public class PackageManagerInvokeRedirect {
+public class PackageManagerInvokeRedirect {// LEARN: 2019-10-22 15:53 其实就是写在一个单独类里面，避免再次被transform逻辑发现
 
     private static PluginPackageManager getPluginPackageManager(ClassLoader classLoaderOfInvokeCode) {
         return PluginPartInfoManager.getPluginInfo(classLoaderOfInvokeCode).packageManager;
