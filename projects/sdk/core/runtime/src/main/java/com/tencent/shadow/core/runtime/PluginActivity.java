@@ -51,7 +51,7 @@ public abstract class PluginActivity extends ShadowContext implements Window.Cal
 
     ShadowApplication mPluginApplication;
 
-    public final void setHostContextAsBase(Context context) {
+    public final void setHostContextAsBase(Context context) {// LEARN: 2019-10-22 19:04 因为实例是通过classloader使用无参构造函数构造出来的，因此需要注入Context，这是模仿系统构造Activity的模式
         attachBaseContext(context);
     }
 

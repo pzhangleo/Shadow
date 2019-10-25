@@ -31,7 +31,7 @@ import android.util.TypedValue;
 
 import java.io.InputStream;
 
-public class MixResources extends ResourcesWrapper {
+public class MixResources extends ResourcesWrapper {// LEARN: 2019-10-22 18:18 插件使用的资源类，查找逻辑是先从插件资源中找，找不到再去宿主里面找
 
     private Resources mHostResources;
 

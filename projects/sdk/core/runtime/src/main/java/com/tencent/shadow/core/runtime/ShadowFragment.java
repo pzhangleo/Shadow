@@ -53,9 +53,9 @@ import java.util.Map;
 public class ShadowFragment {
     private static Map<String, Constructor<?>> constructorMap = new HashMap<>();
 
-    private static IContainerFragment instantiateContainerFragment(ShadowFragment shadowFragment) {
-        String shadowFragmentClassname = shadowFragment.getClass().getName();
-        String containerFragmentClassName = shadowFragmentClassname.substring(0, shadowFragmentClassname.length() - 1);
+    private static IContainerFragment instantiateContainerFragment(ShadowFragment shadowFragment) {// LEARN: 2019-10-23 17:52 transform后的代码中，原来的Fragment类名增加了后缀，而原来的类名改为继承ContainerFragment了
+        String shadowFragmentClassname = shadowFragment.getClass().getName();//TestFragment_ extends ShadowFragment
+        String containerFragmentClassName = shadowFragmentClassname.substring(0, shadowFragmentClassname.length() - 1);//TestFragment extends ContainerFragment
         Constructor<?> constructor = constructorMap.get(containerFragmentClassName);
         if (constructor == null) {
             ClassLoader pluginClassLoader = shadowFragment.getClass().getClassLoader();
@@ -83,7 +83,7 @@ public class ShadowFragment {
 
     public ShadowFragment() {
         mContainerFragment = instantiateContainerFragment(this);
-        mContainerFragment.bindPluginFragment(this);
+        mContainerFragment.bindPluginFragment(this);// LEARN: 2019-10-23 17:51 此处在构造函数中将自身注入了ContainerFragment
         mIsAppCreateFragment = true;
     }
 
