@@ -33,6 +33,7 @@ import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -152,4 +153,14 @@ public interface HostActivityDelegate {
     void onMultiWindowModeChanged(boolean isInMultiWindowMode, Configuration newConfig);
 
     void onPostResume();
+
+    void onTitleChanged(CharSequence title, int color);
+
+    void onPictureInPictureModeChanged(boolean isInPictureInPictureMode);
+
+    void onPictureInPictureModeChanged(boolean isInPictureInPictureMode, Configuration newConfig);
+
+    void onStateNotSaved();
+
+    boolean onOptionsItemSelected(MenuItem item);
 }

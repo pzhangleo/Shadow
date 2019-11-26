@@ -35,11 +35,13 @@ import java.util.Map;
 /**
  * 用于在plugin-loader中调用假的Application方法的接口
  */
-public abstract class ShadowApplication extends ShadowContext {
+public class ShadowApplication extends ShadowContext {
 
     private Application mHostApplication;
 
     private Map<String, List<String>> mBroadcasts;
+
+    private ShadowAppComponentFactory mAppComponentFactory;
 
     public boolean isCallOnCreate;
 
@@ -58,6 +60,8 @@ public abstract class ShadowApplication extends ShadowContext {
             try {
                 Class<?> clazz = mPluginClassLoader.loadClass(entry.getKey());
                 BroadcastReceiver receiver = ((BroadcastReceiver) clazz.newInstance());
+                mAppComponentFactory.instantiateReceiver(mPluginClassLoader, entry.getKey(), null);
+
                 IntentFilter intentFilter = new IntentFilter();
                 for (String action:entry.getValue()
                      ) {
@@ -157,5 +161,9 @@ public abstract class ShadowApplication extends ShadowContext {
 
     public void attachBaseContext(Context base) {
         //do nothing.
+    }
+
+    public void setAppComponentFactory(ShadowAppComponentFactory factory) {
+        mAppComponentFactory = factory;
     }
 }
