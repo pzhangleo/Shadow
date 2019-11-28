@@ -14,6 +14,13 @@ buildscript {
         google()
         jcenter()
         mavenLocal()
+        maven {
+            credentials {
+                username 'vJ7Gor'
+                password 'eiFE2dNr6t'
+            }
+            url 'https://repo.rdc.aliyun.com/repository/111975-snapshot-adUwbB/'
+        }
     }
 
     dependencies {
