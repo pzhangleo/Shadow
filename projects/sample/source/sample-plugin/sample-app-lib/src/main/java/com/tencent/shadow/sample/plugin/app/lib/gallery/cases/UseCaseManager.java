@@ -32,15 +32,14 @@ import com.tencent.shadow.sample.plugin.app.lib.usecases.context.ActivityContext
 import com.tencent.shadow.sample.plugin.app.lib.usecases.context.ApplicationContextSubDirTestActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.dialog.TestDialogActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.fragment.TestDynamicFragmentActivity;
-import com.tencent.shadow.sample.plugin.app.lib.usecases.fragment.TestDynamicSupportFragmentActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.fragment.TestXmlFragmentActivity;
-import com.tencent.shadow.sample.plugin.app.lib.usecases.fragment.TestXmlSupportFragmentActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.host_communication.PluginUseHostClassActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.packagemanager.TestPackageManagerActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.provider.TestDBContentProviderActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.provider.TestFileProviderActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.receiver.TestDynamicReceiverActivity;
 import com.tencent.shadow.sample.plugin.app.lib.usecases.receiver.TestReceiverActivity;
+import com.tencent.shadow.sample.plugin.app.lib.usecases.webview.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,7 +66,8 @@ public class UseCaseManager {
                 new TestActivityWindowSoftMode.Case(),
                 new TestActivitySetTheme.Case(),
                 new TestActivityOptionMenu.Case(),
-                new TestAppCompatActivityOnCreate.Case()
+                new TestAppCompatActivityOnCreate.Case(),
+                new WebViewActivity.Case()
         });
         useCases.add(activityCategory);
 
@@ -87,9 +87,7 @@ public class UseCaseManager {
 
         UseCaseCategory fragmentCategory = new UseCaseCategory("fragment测试用例",new UseCase[]{
                 new TestDynamicFragmentActivity.Case(),
-                new TestXmlFragmentActivity.Case(),
-                new TestDynamicSupportFragmentActivity.Case(),
-                new TestXmlSupportFragmentActivity.Case()
+                new TestXmlFragmentActivity.Case()
         });
         useCases.add(fragmentCategory);
 

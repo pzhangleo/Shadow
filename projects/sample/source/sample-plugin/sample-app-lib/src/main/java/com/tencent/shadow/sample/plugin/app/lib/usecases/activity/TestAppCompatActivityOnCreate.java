@@ -36,8 +36,8 @@ public class TestAppCompatActivityOnCreate extends AppCompatActivity {
         @Override
         public String getSummary() {
             return "由于Android自己的实现中\n"
-                    + "AppCompatActivity的AppCompatDelegateImpl使用了\n --makeOptionalFitsSystemWindows\n --computeFitSystemWindows。\n属于Android P浅灰API\n\n"
-                    + "所以当前测试用例运行在Android 9 或以上的设备时,  您需要先手动取消HostApplication中的严格模式 ";
+                + "AppCompatActivity的AppCompatDelegateImpl使用了\n --makeOptionalFitsSystemWindows\n --computeFitSystemWindows。\n属于Android P浅灰API\n\n"
+                + "所以当前测试用例运行在Android 9 或以上的设备时,  您需要先手动取消HostApplication中的严格模式 ";
         }
 
         @Override

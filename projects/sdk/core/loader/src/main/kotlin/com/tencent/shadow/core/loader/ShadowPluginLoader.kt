@@ -36,11 +36,8 @@ import com.tencent.shadow.core.loader.infos.PluginParts
 import com.tencent.shadow.core.loader.managers.ComponentManager
 import com.tencent.shadow.core.loader.managers.PluginContentProviderManager
 import com.tencent.shadow.core.loader.managers.PluginServiceManager
-import com.tencent.shadow.core.loader.remoteview.ShadowRemoteViewCreatorImp
-import com.tencent.shadow.core.runtime.UriParseDelegate
+import com.tencent.shadow.core.runtime.UriConverter
 import com.tencent.shadow.core.runtime.container.*
-import com.tencent.shadow.core.runtime.remoteview.ShadowRemoteViewCreator
-import com.tencent.shadow.core.runtime.remoteview.ShadowRemoteViewCreatorProvider
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
@@ -84,14 +81,16 @@ abstract class ShadowPluginLoader(hostAppContext: Context) : DelegateProvider, D
 
     private val mPluginServiceManagerLock = ReentrantLock()
 
-    private val  mShadowRemoteViewCreatorProvider: ShadowRemoteViewCreatorProvider = ShadowRemoteViewCreatorProviderImpl()
-
     private val mHostAppContext: Context = hostAppContext
 
     private val mUiHandler = Handler(Looper.getMainLooper())
 
     companion object {
         private val mLogger = LoggerFactory.getLogger(ShadowPluginLoader::class.java)
+    }
+
+    init {
+        UriConverter.setUriParseDelegate(mPluginContentProviderManager)
     }
 
     fun getPluginServiceManager(): PluginServiceManager {
@@ -167,8 +166,7 @@ abstract class ShadowPluginLoader(hostAppContext: Context) : DelegateProvider, D
                 mPluginPartsMap,
                 mHostAppContext,
                 installedApk,
-                loadParameters,
-                mShadowRemoteViewCreatorProvider)
+                loadParameters)
     }
 
     private fun allPluginPackageInfo(): Array<PackageInfo> {
@@ -186,30 +184,19 @@ abstract class ShadowPluginLoader(hostAppContext: Context) : DelegateProvider, D
         return ShadowContentProviderDelegate(mPluginContentProviderManager)
     }
 
-    override fun getUriParseDelegate(): UriParseDelegate {
-        return mPluginContentProviderManager
-    }
-
     override fun inject(delegate: ShadowDelegate, partKey: String) {
         mLock.withLock {
             val pluginParts = mPluginPartsMap[partKey]
             if (pluginParts == null) {
                 throw IllegalStateException("partKey==${partKey}在map中找不到。此时map：${mPluginPartsMap}")
             } else {
+                delegate.inject(pluginParts.appComponentFactory)
                 delegate.inject(pluginParts.application)
                 delegate.inject(pluginParts.classLoader)
                 delegate.inject(pluginParts.resources)
                 delegate.inject(mComponentManager)
-                delegate.inject(mShadowRemoteViewCreatorProvider)
             }
         }
-    }
-
-    private inner class ShadowRemoteViewCreatorProviderImpl: ShadowRemoteViewCreatorProvider {
-        override fun createRemoteViewCreator(context: Context): ShadowRemoteViewCreator {
-            return ShadowRemoteViewCreatorImp(context, this@ShadowPluginLoader)
-        }
-
     }
 
     fun InstalledApk.getLoadParameters(): LoadParameters {
