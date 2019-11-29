@@ -19,6 +19,7 @@
 package com.tencent.shadow.core.loader.delegates
 
 import android.app.Activity
+import android.app.Application
 import android.app.Dialog
 import android.app.Fragment
 import android.content.ComponentName
@@ -177,6 +178,10 @@ class ShadowActivityDelegate(private val mDI: DI) : HostActivityDelegate, Shadow
         val pluginExtras: Bundle? = intent.getBundleExtra(CM_EXTRAS_BUNDLE_KEY)
         intent.replaceExtras(pluginExtras)
         mPluginActivity.onNewIntent(intent)
+    }
+
+    override fun registerActivityLifecycleCallbacks(callback: Application.ActivityLifecycleCallbacks?) {
+        mPluginActivity.registerActivityLifecycleCallbacks(callback)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

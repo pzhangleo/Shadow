@@ -8,9 +8,9 @@ def gitShortRev() {
 }
 
 allprojects {
-    ext.COMPILE_SDK_VERSION = 28
+    ext.COMPILE_SDK_VERSION = 29
     ext.MIN_SDK_VERSION = 16
-    ext.TARGET_SDK_VERSION = 28
+    ext.TARGET_SDK_VERSION = 29
     ext.VERSION_CODE = 1
     ext.VERSION_NAME = "2.0.12"
     if ("${System.env.PUBLISH_RELEASE}".equalsIgnoreCase("true")) {

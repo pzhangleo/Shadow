@@ -19,6 +19,7 @@
 package com.tencent.shadow.core.runtime;
 
 import android.app.ActionBar;
+import android.app.Application;
 import android.app.FragmentManager;
 import android.app.SharedElementCallback;
 import android.content.ComponentName;
@@ -352,5 +353,9 @@ public abstract class ShadowActivity extends PluginActivity {
             throw new IllegalArgumentException("ID does not reference a View inside this Activity");
         }
         return view;
+    }
+
+    public void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
+        mHostActivityDelegator.registerActivityLifecycleCallbacks(callback);
     }
 }

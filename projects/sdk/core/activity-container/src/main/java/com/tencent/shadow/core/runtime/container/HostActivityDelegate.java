@@ -19,6 +19,7 @@
 package com.tencent.shadow.core.runtime.container;
 
 import android.app.Activity;
+import android.app.Application;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.ComponentName;
@@ -163,4 +164,6 @@ public interface HostActivityDelegate {
     void onStateNotSaved();
 
     boolean onOptionsItemSelected(MenuItem item);
+
+    void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback);
 }
