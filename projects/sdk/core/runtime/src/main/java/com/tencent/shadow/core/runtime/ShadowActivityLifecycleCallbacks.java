@@ -44,7 +44,7 @@ public interface ShadowActivityLifecycleCallbacks {
 
     void onActivityPostStarted(ShadowActivity activity);
 
-    void onActivityPostResume(ShadowActivity activity);
+    void onActivityPostResumed(ShadowActivity activity);
 
     void onActivityPostCreated(ShadowActivity activity, Bundle savedInstanceState);
 
@@ -163,7 +163,7 @@ public interface ShadowActivityLifecycleCallbacks {
         public void onActivityPostResumed(Activity activity) {
             final ShadowActivity pluginActivity = getPluginActivity(activity);
             if (checkOwnerActivity(pluginActivity)) {
-                shadowActivityLifecycleCallbacks.onActivityPostResume(pluginActivity);
+                shadowActivityLifecycleCallbacks.onActivityPostResumed(pluginActivity);
             }
         }
 
