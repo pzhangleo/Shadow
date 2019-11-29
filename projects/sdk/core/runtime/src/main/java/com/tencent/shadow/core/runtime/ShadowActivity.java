@@ -355,7 +355,7 @@ public abstract class ShadowActivity extends PluginActivity {
         return view;
     }
 
-    public void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
-        mHostActivityDelegator.registerActivityLifecycleCallbacks(callback);
+    public void registerActivityLifecycleCallbacks(ShadowActivityLifecycleCallbacks callback) {
+//        mHostActivityDelegator.registerActivityLifecycleCallbacks(callback);
     }
 }

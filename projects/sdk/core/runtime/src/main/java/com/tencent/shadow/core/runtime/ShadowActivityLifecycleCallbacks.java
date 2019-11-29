@@ -40,6 +40,35 @@ public interface ShadowActivityLifecycleCallbacks {
 
     void onActivityDestroyed(ShadowActivity activity);
 
+    void onActivityPreCreated(ShadowActivity activity, Bundle savedInstanceState);
+
+    void onActivityPostStarted(ShadowActivity activity);
+
+    void onActivityPostResume(ShadowActivity activity);
+
+    void onActivityPostCreated(ShadowActivity activity, Bundle savedInstanceState);
+
+    void onActivityPreStarted(ShadowActivity activity);
+
+    void onActivityPreResumed(ShadowActivity activity);
+
+    void onActivityPrePaused(ShadowActivity activity);
+
+    void onActivityPostPaused(ShadowActivity activity);
+
+    void onActivityPreStopped(ShadowActivity activity);
+
+    void onActivityPostStopped(ShadowActivity activity);
+
+    void onActivityPreSaveInstanceState(ShadowActivity activity, Bundle outState);
+
+    void onActivityPostSaveInstanceState(ShadowActivity activity, Bundle outState);
+
+    void onActivityPreDestroyed(ShadowActivity activity);
+
+    void onActivityPostDestroyed(ShadowActivity activity);
+
+    @SuppressWarnings("NullableProblems")
     class Wrapper implements Application.ActivityLifecycleCallbacks {
 
         final ShadowActivityLifecycleCallbacks shadowActivityLifecycleCallbacks;
@@ -111,6 +140,118 @@ public interface ShadowActivityLifecycleCallbacks {
             final ShadowActivity pluginActivity = getPluginActivity(activity);
             if (checkOwnerActivity(pluginActivity) ) {
                 shadowActivityLifecycleCallbacks.onActivityDestroyed(pluginActivity);
+            }
+        }
+
+        @Override
+        public void onActivityPreCreated(Activity activity, Bundle savedInstanceState) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPreCreated(pluginActivity, savedInstanceState);
+            }
+        }
+
+        @Override
+        public void onActivityPostStarted(Activity activity) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPostStarted(pluginActivity);
+            }
+        }
+
+        @Override
+        public void onActivityPostResumed(Activity activity) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPostResume(pluginActivity);
+            }
+        }
+
+        @Override
+        public void onActivityPostCreated(Activity activity, Bundle savedInstanceState) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPostCreated(pluginActivity, savedInstanceState);
+            }
+        }
+
+        @Override
+        public void onActivityPreStarted(Activity activity) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPreStarted(pluginActivity);
+            }
+        }
+
+        @Override
+        public void onActivityPreResumed(Activity activity) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPreResumed(pluginActivity);
+            }
+        }
+
+        @Override
+        public void onActivityPrePaused(Activity activity) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPrePaused(pluginActivity);
+            }
+        }
+
+        @Override
+        public void onActivityPostPaused(Activity activity) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPostPaused(pluginActivity);
+            }
+        }
+
+        @Override
+        public void onActivityPreStopped(Activity activity) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPreStopped(pluginActivity);
+            }
+        }
+
+        @Override
+        public void onActivityPostStopped(Activity activity) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPostStopped(pluginActivity);
+            }
+        }
+
+        @Override
+        public void onActivityPreSaveInstanceState(Activity activity, Bundle outState) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPreSaveInstanceState(pluginActivity, outState);
+            }
+        }
+
+        @Override
+        public void onActivityPostSaveInstanceState(Activity activity, Bundle outState) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPostSaveInstanceState(pluginActivity, outState);
+            }
+        }
+
+        @Override
+        public void onActivityPreDestroyed(Activity activity) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPreDestroyed(pluginActivity);
+            }
+        }
+
+        @Override
+        public void onActivityPostDestroyed(Activity activity) {
+            final ShadowActivity pluginActivity = getPluginActivity(activity);
+            if (checkOwnerActivity(pluginActivity)) {
+                shadowActivityLifecycleCallbacks.onActivityPostDestroyed(pluginActivity);
             }
         }
 

@@ -38,7 +38,7 @@ internal class PluginLoaderBinder(private val mDynamicPluginLoader: DynamicPlugi
             PluginLoader.TRANSACTION_loadPlugin -> {
                 data.enforceInterface(PluginLoader.DESCRIPTOR)
                 val _arg0: String
-                _arg0 = data.readString()
+                _arg0 = data.readString()!!
                 mDynamicPluginLoader.loadPlugin(_arg0)
                 reply!!.writeNoException()
                 return true
@@ -47,13 +47,13 @@ internal class PluginLoaderBinder(private val mDynamicPluginLoader: DynamicPlugi
                 data.enforceInterface(PluginLoader.DESCRIPTOR)
                 val _result = mDynamicPluginLoader.getLoadedPlugin()
                 reply!!.writeNoException()
-                reply.writeMap(_result)
+                reply.writeMap(_result as Map<*, *>?)
                 return true
             }
             PluginLoader.TRANSACTION_callApplicationOnCreate -> {
                 data.enforceInterface(PluginLoader.DESCRIPTOR)
                 val _arg0: String
-                _arg0 = data.readString()
+                _arg0 = data.readString()!!
                 mDynamicPluginLoader.callApplicationOnCreate(_arg0)
                 reply!!.writeNoException()
                 return true

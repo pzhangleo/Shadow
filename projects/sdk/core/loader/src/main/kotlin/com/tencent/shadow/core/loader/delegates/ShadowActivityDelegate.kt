@@ -18,6 +18,7 @@
 
 package com.tencent.shadow.core.loader.delegates
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.Application
 import android.app.Dialog
@@ -45,6 +46,7 @@ import com.tencent.shadow.core.loader.managers.ComponentManager.Companion.CM_LOA
 import com.tencent.shadow.core.loader.managers.ComponentManager.Companion.CM_PART_KEY
 import com.tencent.shadow.core.runtime.MixResources
 import com.tencent.shadow.core.runtime.PluginActivity
+import com.tencent.shadow.core.runtime.ShadowActivityLifecycleCallbacks
 import com.tencent.shadow.core.runtime.ShadowLayoutInflater
 import com.tencent.shadow.core.runtime.container.HostActivityDelegate
 import com.tencent.shadow.core.runtime.container.HostActivityDelegator
@@ -90,7 +92,7 @@ class ShadowActivityDelegate(private val mDI: DI) : HostActivityDelegate, Shadow
     override fun onCreate(savedInstanceState: Bundle?) {
         val pluginInitBundle = if (savedInstanceState == null) mHostActivityDelegator.intent.extras else savedInstanceState
 
-        mCallingActivity = pluginInitBundle.getParcelable(CM_CALLING_ACTIVITY_KEY)
+        mCallingActivity = pluginInitBundle!!.getParcelable(CM_CALLING_ACTIVITY_KEY)
         mBusinessName = pluginInitBundle.getString(CM_BUSINESS_NAME_KEY, "")
         val partKey = pluginInitBundle.getString(CM_PART_KEY)!!
         mPartKey = partKey
@@ -103,7 +105,7 @@ class ShadowActivityDelegate(private val mDI: DI) : HostActivityDelegate, Shadow
         mBundleForPluginLoader = bundleForPluginLoader
         bundleForPluginLoader.classLoader = this.javaClass.classLoader
         val pluginActivityClassName = bundleForPluginLoader.getString(CM_CLASS_NAME_KEY)
-        val pluginActivityInfo: PluginActivityInfo = bundleForPluginLoader.getParcelable(CM_ACTIVITY_INFO_KEY)
+        val pluginActivityInfo: PluginActivityInfo = bundleForPluginLoader.getParcelable(CM_ACTIVITY_INFO_KEY)!!
 
         mCurrentConfiguration = Configuration(resources.configuration)
         mPluginHandleConfigurationChange =
@@ -178,10 +180,6 @@ class ShadowActivityDelegate(private val mDI: DI) : HostActivityDelegate, Shadow
         val pluginExtras: Bundle? = intent.getBundleExtra(CM_EXTRAS_BUNDLE_KEY)
         intent.replaceExtras(pluginExtras)
         mPluginActivity.onNewIntent(intent)
-    }
-
-    override fun registerActivityLifecycleCallbacks(callback: Application.ActivityLifecycleCallbacks?) {
-        mPluginActivity.registerActivityLifecycleCallbacks(callback)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -362,6 +360,7 @@ class ShadowActivityDelegate(private val mDI: DI) : HostActivityDelegate, Shadow
         return mPluginClassLoader
     }
 
+    @SuppressLint("WrongConstant")
     override fun getLayoutInflater(): LayoutInflater {
         val inflater = mHostActivityDelegator.applicationContext.getSystemService(LAYOUT_INFLATER_SERVICE) as LayoutInflater
         return ShadowLayoutInflater.build(inflater, mPluginActivity, mPartKey)

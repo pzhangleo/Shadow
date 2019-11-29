@@ -2249,11 +2249,7 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
 
     @Override
     @TargetApi(29)
-    public void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
-        if (hostActivityDelegate != null) {
-            hostActivityDelegate.registerActivityLifecycleCallbacks(callback);
-        } else {
-            super.registerActivityLifecycleCallbacks(callback);
-        }
+    public void superRegisterActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
+        super.registerActivityLifecycleCallbacks(callback);
     }
 }

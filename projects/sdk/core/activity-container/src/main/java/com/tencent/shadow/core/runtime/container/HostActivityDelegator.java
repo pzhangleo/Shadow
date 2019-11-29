@@ -1323,5 +1323,5 @@ public interface HostActivityDelegator {
 
     void superOnPointerCaptureChanged(boolean hasCapture);
 
-    void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback);
+    void superRegisterActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback);
 }

@@ -165,5 +165,4 @@ public interface HostActivityDelegate {
 
     boolean onOptionsItemSelected(MenuItem item);
 
-    void registerActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback);
 }

@@ -19,6 +19,7 @@
 package com.tencent.shadow.core.runtime;
 
 import android.app.Activity;
+import android.app.Application;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
@@ -386,5 +387,9 @@ public abstract class PluginActivity extends ShadowContext implements Window.Cal
 
     public void onStateNotSaved() {
         mHostActivityDelegator.superOnStateNotSaved();
+    }
+
+    public void registerActivityLifecycleCallbacks(ShadowActivityLifecycleCallbacks callback) {
+//        mHostActivityDelegator.registerActivityLifecycleCallbacks(callback);todo uncomment this
     }
 }
