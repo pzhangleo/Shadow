@@ -7,8 +7,8 @@ buildscript {
         jcenter()
         maven {
             credentials {
-                username 'vJ7Gor'
-                password 'eiFE2dNr6t'
+                username ALIMAVEN_USER
+                password ALIMAVEN_PASSWORD
             }
             url 'https://repo.rdc.aliyun.com/repository/111975-snapshot-adUwbB/'
         }
@@ -27,8 +27,8 @@ allprojects {
         mavenLocal()
         maven {
             credentials {
-                username 'vJ7Gor'
-                password 'eiFE2dNr6t'
+                username ALIMAVEN_USER
+                password ALIMAVEN_PASSWORD
             }
             url 'https://repo.rdc.aliyun.com/repository/111975-snapshot-adUwbB/'
         }
