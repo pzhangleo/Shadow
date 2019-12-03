@@ -2246,10 +2246,4 @@ public class PluginContainerActivity extends Activity implements HostActivity, H
             return super.onOptionsItemSelected(item);
         }
     }
-
-    @Override
-    @TargetApi(29)
-    public void superRegisterActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback) {
-        super.registerActivityLifecycleCallbacks(callback);
-    }
 }

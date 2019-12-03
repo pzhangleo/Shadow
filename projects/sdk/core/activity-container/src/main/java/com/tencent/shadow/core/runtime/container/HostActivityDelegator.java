@@ -1328,6 +1328,4 @@ public interface HostActivityDelegator {
     void superOnActionModeFinished(ActionMode mode);
 
     void superOnPointerCaptureChanged(boolean hasCapture);
-
-    void superRegisterActivityLifecycleCallbacks(Application.ActivityLifecycleCallbacks callback);
 }
